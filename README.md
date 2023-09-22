@@ -31,6 +31,6 @@ You have created the Dynamodb table. You can use the below command:
          --attribute-definitions AttributeName=LockID,AttributeType=S \
          --key-schema AttributeName=LockID,KeyType=HASH \
          --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
-         --region us-west-2``
+         --region us-west-2`
     
 

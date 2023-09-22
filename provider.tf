@@ -1,7 +1,7 @@
 # configure aws provider
 provider "aws" {
   region  = var.region
-  profile = "mnforba"
+  //profile = "mnforba"
 }
 
 # configure backend
@@ -10,7 +10,7 @@ terraform {
     bucket         = "mnforba-terraform"
     key            = "terraform.tfstate"
     region         = "us-east-1"
-    profile        = "mnforba"
+    //profile        = "mnforba"
     dynamodb_table = "terraform-state-lock-dynamodb"
   }
 }

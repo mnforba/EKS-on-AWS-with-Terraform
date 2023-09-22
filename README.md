@@ -17,6 +17,18 @@ The following details makes the following assumptions.
 
     You have aws cli configured  - aws configure
     You have your environmental variables set: 
-    Check your environmetal variables using: `echo $AWS_ACCESS_KEY_ID` & `echo $AWS_SECRET_ACCESS_KEY`
+Check your environmetal variables using: 
+    `echo $AWS_ACCESS_KEY_ID` & `echo $AWS_SECRET_ACCESS_KEY`
+If they're not set, you can set them temporarily:
+    `export AWS_ACCESS_KEY_ID="your-access-key-id"` &
+    `export AWS_SECRET_ACCESS_KEY="your-secret-access-key"`
 
-    You have created s3 bucket that will act as the backend of the project. 
+    You have created s3 bucket that will act as the backend of the project.
+    You have created the DynamoDB Table. 
+Using the AWS CLI, the command to creat woud look something like this:
+    `aws dynamodb create-table \
+         --table-name my-terraform-lock-table \
+         --attribute-definitions AttributeName=LockID,AttributeType=S \
+         --key-schema AttributeName=LockID,KeyType=HASH \
+         --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
+         --region us-west-2`

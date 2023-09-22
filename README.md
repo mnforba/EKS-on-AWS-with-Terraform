@@ -97,8 +97,11 @@ kubectl version --short --client
 ```
     
 * In the below command, replace the name with your EKS cluster and AWS region where the cluster is located. 
-
-    aws eks update-kubeconfig - name <your-cluster-name> - region <your-region>
-    kubectl get nodes
+```
+aws eks update-kubeconfig - name <your-cluster-name> - region <your-region>
+```
+```
+kubectl get nodes
+```
 
        

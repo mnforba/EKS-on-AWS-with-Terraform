@@ -4,7 +4,7 @@ Amazon Elastic Kubernetes Service (Amazon EKS) is a managed Kubernetes service p
 
 ![AWSEKS](https://github.com/mnforba/EKS-on-AWS-with-Terraform/assets/88167119/be3e9910-4c8f-4b2f-b5a4-4753eeea3821)
 
-### Prerequisite
+## Prerequisite
 Before we proceed and provision EKS Cluster using terraform, there are a few commands or tools you need to have.
 
     1. AWS Account
@@ -12,7 +12,7 @@ Before we proceed and provision EKS Cluster using terraform, there are a few com
     2. Basic understanding of AWS, Terraform and Kubernetes
 
     3. Github Account to store the code
-### Assumptions
+## Assumptions
 The following details makes the following assumptions.
 
     You have aws cli configured  - aws configure
@@ -44,7 +44,7 @@ You can create a dynamodb table using the command
          --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
          --region us-west-2
 
-## Step 1: Create the module for VPC
+### Step 1: Create the module for VPC
 * Create `main.tf` file and add the code from code base.
 ```
 # Creating VPC
@@ -189,7 +189,7 @@ output "internet_gateway" {
   value = aws_internet_gateway.eks_internet_gateway.id
 }
 ```
-## Step 2: Create the module for the Security Group
+### Step 2: Create the module for the Security Group
 * Create `main.tf` file and add the below code to it.
 ```
 # Create Security Group for the EKS  
@@ -275,7 +275,7 @@ output "eks_security_group_id" {
   value = aws_security_group.eks_security_group.id
 }
 ```
-## Step 3: Create the module for the Key Pair
+### Step 3: Create the module for the Key Pair
 * For this project I have already created the key pair on AWS so, I will just fetch the key from AWS.
 * Create the `main.tf` file and add the below code to it.
 ```
@@ -297,7 +297,7 @@ output "id" {
   value = data.aws_key_pair.vprof.id
 }
 ```
-## Step 4: Create the module for the IAM Role
+### Step 4: Create the module for the IAM Role
 * Create `main.tf` file and add the  below code to it.
 ```
 # Creating IAM role for Master Node
@@ -443,7 +443,7 @@ output "worker_arn" {
   value = aws_iam_role.worker.arn
 }
 ```
-## Step 5: Create the module for the EKS
+### Step 5: Create the module for the EKS
 * Create `main.tf` file and add the below code to it.
 ```
 # Creating EKS Cluster
@@ -586,27 +586,26 @@ output "aws_eks_cluster_name" {
   value = aws_eks_cluster.eks.id
 }
 ```
-## Step 6: Initialize the working directory
+### Step 6: Initialize the working directory
 Initialize the project to pull all the moduels used, download the necessary providers, and also initialize the backend as well.
 
     terraform init
 
-## Step 7: Validate the project
+### Step 7: Validate the project
 Validate that the project is correctly setup. 
 
     terraform validate
 
-## Step 8: Create a terraform plan
+### Step 8: Create a terraform plan
 Run the plan command to see all the resources that will be created
 
     terraform plan
 
-## Step 8: Create a terraform apply
+### Step 9: Create a terraform apply
 * When you ready, run the apply command to create the resources. It will be going to create the kubernetes cluster on AWS.
- 
-
+```
     terraform apply
-
+```
 * Terraform will create the below resources on AWS
     1. VPC
     2. Route Table
@@ -617,12 +616,12 @@ Run the plan command to see all the resources that will be created
     7. Worker Nodes
     8. EKS Cluster
 
-## Step 9: Destory the resources
+### Step 10: Destory the resources
 * When you ready, run the destroy command to destroy the resources. 
 
     terraform destroy
 
-### Launch kubectl Server
+## Launch kubectl Server
 [Configure kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html)
 
 * In the curl command, I am using Kubernetes `1.24.0`. You can use any latest
